@@ -1,0 +1,103 @@
+[build-system]
+requires = ["hatchling>=1.32"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/panjaro/__init__.py"
+
+[project]
+name = "panjaro"
+dynamic = ["version"]
+description = "Panjaro is a modern framework for Python."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+
+authors = [
+    { name = "Fozil Yuldoshev", email = "fozilyuldoshew@gmail.com" },
+]
+
+keywords = [
+    "framework",
+    "web",
+    "api",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
+
+dependencies = []
+
+[project.urls]
+Homepage = "https://panjaro.com"
+Repository = "https://github.com/panjaro/panjaro"
+Issues = "https://github.com/panjaro/panjaro/issues"
+Documentation = "https://panjaro.com/docs"
+
+[project.scripts]
+panjaro = "panjaro.cli:main"
+
+[dependency-groups]
+test = [
+    "pytest>=9.1",
+    "pytest-asyncio>=1.4",
+    "pytest-cov>=7.1",
+]
+
+quality = [
+    "ruff>=0.16.7",
+    "mypy>=2.3",
+]
+
+build = [
+    "build>=1.3",
+]
+
+dev = [
+    { include-group = "test" },
+    { include-group = "quality" },
+    { include-group = "build" },
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/panjaro"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-config",
+    "--strict-markers",
+]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "C4",
+    "UP",
+    "ASYNC",
+    "SIM",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+warn_unused_ignores = true
