@@ -1,0 +1,6 @@
+pytest>=9.1
+pytest-asyncio>=1.4
+pytest-cov>=7.1
+ruff>=0.16
+mypy>=2.3
+build>=1.6
